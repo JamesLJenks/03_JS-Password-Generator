@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = userInput ();
+  var password = generatePassword ();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -43,12 +43,23 @@ function shuffle (array) {
 // Function to intake and return user input
 
 function userInput () {
-  var passwordLength = prompt("How long would like your password to be?")
+  var passwordLength = parseInt( prompt("How long would like your password to be?"))
   console.log(passwordLength)
+
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("Password must be greater than 8 characters or less than 128 characters.")
+    return;
+  }
+
   var chooseNumbers = confirm("Would you like numbers in your password?")
   var chooseUpperCase = confirm("Would you like uppercase characters in your password?")
   var chooseLowerCase = confirm("Would you like lowercase characters in your password?")
   var chooseSymbols = confirm("Would you like symbols in your password?")
+
+  if (!chooseNumbers && !chooseUpperCase && !chooseLowerCase && !chooseSymbols) {
+    alert("Must have at least one character type.")
+    return;
+  }
 
   var actualUserChoices = {
     // Left of the colon is key, right of the colon is value
@@ -68,6 +79,45 @@ function userInput () {
 
 // Function to combine user input and randomization and return a random password
 
+function generatePassword () {
+  var userOptions = userInput ()
+  var newPassword = []
+  var possibleCharacters = []
 
+
+  if (userOptions.hasNumbers) {
+    possibleCharacters = possibleCharacters.concat(numericCharacters)
+    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    possibleCharacters.push(shuffle(numericCharacters))
+  }
+
+  if (userOptions.hasSymbols) {
+    possibleCharacters = possibleCharacters.concat(specialCharacters)
+    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    possibleCharacters.push(shuffle(specialCharacters))
+  }
+  
+  if (userOptions.hasUpperCase) {
+    possibleCharacters = possibleCharacters.concat(upperCase)
+    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    possibleCharacters.push(shuffle(upperCase))
+  }
+
+  if (userOptions.hasLowerCase) {
+    possibleCharacters = possibleCharacters.concat(lowerCase)
+    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    possibleCharacters.push(shuffle(lowerCase))
+  }
+
+  // Add other two
+
+  for (var i = 0; i < userOptions.length; i++) {
+    var stagedPassword = shuffle(possibleCharacters)
+    newPassword.push (stagedPassword)
+  }
+  console.log(newPassword);
+
+  return newPassword.join("")
+}
 
 
