@@ -3,7 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = userInput();
+  var password = userInput ();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -27,7 +27,15 @@ var upperCase = [  'A',  'B',  'C',  'D',  'E',  "F",  'G',  'H',  'I',  'J',  '
 
 // Create function to randomize an array
 
-
+function shuffle (array) {
+  // Randomizes the array based on the length and produces an integer
+  var grabRandomIndex = Math.floor(Math.random () * array.length)
+  // This converts the random index number to the true string value in the array
+  var grabActualIndexValue = array [grabRandomIndex]
+  
+  // upperCase [7] = H   (This is what would be returned)
+  return grabActualIndexValue;
+}
 
 
 
@@ -52,6 +60,8 @@ function userInput () {
   }
 
   console.log(actualUserChoices);
+
+  return actualUserChoices;
 }
 
 
