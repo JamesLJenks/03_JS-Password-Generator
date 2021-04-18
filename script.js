@@ -14,12 +14,6 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-
-// CLASS ADVICE
-// Write function for generatePassword
-// generatePassword function has to return a string
-
-
 var numericCharacters =  ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var specialCharacters = [  '@',  '%',  '+',  '\\',  '/',  "'",  '!',  '#',  '$',  '^',  '?',  ':',  ',',  ')',  '(',  '}',  '{',  ']',  '[',  '~',  '-',  '_',  '.'];
 var lowerCase = [  'a',  'b',  'c',  'd',  'e',  "f",  'g',  'h',  'i',  'j',  'k',  'l',  'm',  'n',  'o',  'p',  'q',  'r',  's',  't',  'u',  'v',  'w',  'x',  'y',  'z'];
@@ -62,7 +56,7 @@ function userInput () {
   }
 
   var actualUserChoices = {
-    // Left of the colon is key, right of the colon is value
+
     length: passwordLength,
     hasNumbers: chooseNumbers,
     hasUpperCase: chooseUpperCase,
@@ -93,23 +87,21 @@ function generatePassword () {
 
   if (userOptions.hasSymbols) {
     possibleCharacters = possibleCharacters.concat(specialCharacters)
-    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    // Into the possibleCharacters array, pushed a shuffled version of the numericCharacters array
     possibleCharacters.push(shuffle(specialCharacters))
   }
   
   if (userOptions.hasUpperCase) {
     possibleCharacters = possibleCharacters.concat(upperCase)
-    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    // Into the possibleCharacters array, pushed a shuffled version of the numericCharacters array
     possibleCharacters.push(shuffle(upperCase))
   }
 
   if (userOptions.hasLowerCase) {
     possibleCharacters = possibleCharacters.concat(lowerCase)
-    // Into the possibleCharacters array, push a shuffled version of the numericCharacters array
+    // Into the possibleCharacters array, pushed a shuffled version of the numericCharacters array
     possibleCharacters.push(shuffle(lowerCase))
   }
-
-  // Add other two
 
   for (var i = 0; i < userOptions.length; i++) {
     var stagedPassword = shuffle(possibleCharacters)
